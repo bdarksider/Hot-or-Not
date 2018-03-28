@@ -31,17 +31,48 @@
   </head>
 
   <body>
-    <!-- facebook share plugin -->
     <div id="fb-root"></div>
-    <script>(function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.12&appId=221837898398501&autoLogAppEvents=1';
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
-    <!-- facebook share plugin -->
-    
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '221837898398501',
+          cookie     : true,
+          xfbml      : true,
+          version    : '{latest-api-version}'
+        });
+
+        FB.AppEvents.logPageView();
+
+        FB.getLoginStatus(function(response) {
+          checkFbLoggedIn(response);
+        });
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "https://connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+
+      function checkFbLoggedIn(response) {
+        if (response.status != 'connected') {
+          FB.login(function(response) {
+              if (response.authResponse) {
+               console.log('Welcome!  Fetching your information.... ');
+               FB.api('/me', function(response) {
+                 console.log('Good to see you, ' + response.name + '.');
+               });
+              } else {
+               console.log('User cancelled login or did not fully authorize.');
+              }
+          }, {scope: 'email'});
+        }
+      }
+    </script>
+    <!-- facebook login -->
+
     <div class="m-b-1">
       <nav class="navbar navbar-expand-md navbar-light bg-light">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
