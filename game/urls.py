@@ -9,4 +9,9 @@ urlpatterns = [
         view=views.model_form_upload,
         name='list'
     ),
+    url(
+        regex=r'^vote/(?P<pk>[0-9]+)$',
+        view=views.Vote.as_view(),
+        name='vote'
+    ),
 ]

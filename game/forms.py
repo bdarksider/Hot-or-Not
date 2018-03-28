@@ -1,7 +1,7 @@
 from django import forms
-from .models import Document
+from .models import Match
 
-class DocumentForm(forms.ModelForm):
+class MatchForm(forms.ModelForm):
     class Meta:
-        model = Document
+        model = Match
         fields = ('left_image', 'right_image', )
