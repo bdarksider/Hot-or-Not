@@ -5,7 +5,7 @@ class MatchSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Match
 		resource_name = "match_resource"
-		fields = ('vote_left', 'vote_right',)
+		fields = ('vote_left', 'vote_right', 'left_image', 'right_image')
 
 	# url = serializers.HyperlinkedIdentityField(
 	# 	view_name='vote',

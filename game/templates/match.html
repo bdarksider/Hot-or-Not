@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+	<h1>Hot <span>or</span> Not</h1>
+
+  <br />
+
+  <div id="hero" class="left-option text-center">
+    <img class="food-image" src="/media/{{match.left_image}}" alt="">
+    <div style="font-size: 100px">{{match.vote_left}}</div>
+  </div>
+  {# <div>vs</div> #}
+  <div id="hero" class="right-option text-center">
+    <img class="food-image" src="/media/{{match.right_image}}" alt="">
+    <div style="font-size: 100px">{{match.vote_right}}</div>
+  </div>
+{% endblock %}
+
+
+

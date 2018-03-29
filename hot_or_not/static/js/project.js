@@ -19,3 +19,42 @@ Issues with the above approach:
 4. Undocumented: No mention in the documentation, or it's too hard for me to find
 */
 $('.form-group').removeClass('row');
+
+$('.left-option').click(function() {
+	var data = {
+		'action': 'vote_left'
+	}
+	var request = voteRequest(data).done(function(msg) {
+		console.log(msg);
+	})
+
+	request.fail(function(err, txtStatus) {
+		console.log(err);
+		console.log(txtStatus);
+	})
+});
+
+$('.right-option').click(function() {
+	var data = {
+		'action': 'vote_right'
+	}
+	var request = voteRequest(data).done(function(msg) {
+		console.log(msg);
+	})
+
+	request.fail(function(err, txtStatus) {
+		console.log(err);
+		console.log(txtStatus);
+	})
+});
+
+function voteRequest(data) {
+	return $.ajax({
+			  url : '/game/vote/1',
+			  data : JSON.stringify(data),
+			  type : 'PATCH',
+			  contentType : 'application/json',
+			  processData: false,
+			  dataType: 'json'
+			});
+}

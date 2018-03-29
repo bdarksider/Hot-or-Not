@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css?family=Bangers');
+
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  line-height: 1;
+}
+
+html {
+  font-size: 1px;
+}
+
+body {
+  font-size: 0;
+  text-align: center;
+  margin: 50rem 0;
+}
+
+h1 {
+  display: inline-block;
+  font-family: Bangers, cursive;
+  font-size: 70rem;
+  font-weight: bold;
+  padding: 0 25rem;
+  margin: 20rem 0 30rem 0;
+  border-bottom: solid 7rem #000;
+}
+
+h1 span {
+  font-size: .65em;
+}
+
+.food-image {
+  width: 300rem;
+  height: 300rem;
+  cursor: pointer;
+}
+#hero {
+  position: relative;
+  display: inline-block;
+  vertical-align: bottom;
+  margin: 30rem;
+  width: 300rem;
+  height: 300rem;
+  z-index: 1;
+  background: #bfc4d2;
+  text-align: left;
+  /*border: solid 1rem #7d87a4;*/
+  box-shadow: inset 0 0 10rem 0 rgba(0, 0, 0, 0.4);
+  border-radius: 4rem;
+}
+#hero *, #hero *:before, #hero *:after {
+  transition: all 0.14s cubic-bezier(0.13, 1, 0.44, 0.81);
+}
+#hero header {
+  position: absolute;
+}
+#hero main {
+  position: absolute;
+  z-index: -1;
+  left: 0;
+  bottom: 26rem;
+  width: 100%;
+}
+#hero main:before {
+  content: " ";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  margin-left: -113rem;
+  border-style: solid;
+  border-color: transparent;
+  border-width: 44rem 113rem 144rem 0;
+}
+#hero main:after {
+  content: " ";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  border-style: solid;
+  border-color: transparent;
+  border-width: 44rem 0 144rem 113rem;
+}

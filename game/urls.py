@@ -6,8 +6,13 @@ app_name = 'users'
 urlpatterns = [
     url(
         regex=r'^$',
+        view=views.MatchView.as_view(),
+        name='match'
+    ),
+    url(
+        regex=r'^upload$',
         view=views.model_form_upload,
-        name='list'
+        name='upload'
     ),
     url(
         regex=r'^vote/(?P<pk>[0-9]+)$',

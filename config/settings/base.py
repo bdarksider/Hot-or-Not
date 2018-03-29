@@ -253,3 +253,6 @@ SOCIALACCOUNT_ADAPTER = 'hot_or_not.users.adapters.SocialAccountAdapter'
 
 # Your stuff...
 # ------------------------------------------------------------------------------
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+CRISPY_FAIL_SILENTLY = False
