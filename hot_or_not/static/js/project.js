@@ -24,8 +24,11 @@ $('.left-option').click(function() {
 	var data = {
 		'action': 'vote_left'
 	}
-	var request = voteRequest(data).done(function(msg) {
-		console.log(msg);
+	var id = $(".match").data().id;
+
+	var request = voteRequest(data, id).done(function(msg) {
+		$('.left-count').text(msg.vote_left);
+		location.reload();
 	})
 
 	request.fail(function(err, txtStatus) {
@@ -38,8 +41,12 @@ $('.right-option').click(function() {
 	var data = {
 		'action': 'vote_right'
 	}
-	var request = voteRequest(data).done(function(msg) {
-		console.log(msg);
+
+	var id = $(".match").data().id;
+
+	var request = voteRequest(data, id).done(function(msg) {
+		$('.right-count').text(msg.vote_right);
+		location.reload();
 	})
 
 	request.fail(function(err, txtStatus) {
@@ -48,9 +55,9 @@ $('.right-option').click(function() {
 	})
 });
 
-function voteRequest(data) {
+function voteRequest(data, id) {
 	return $.ajax({
-			  url : '/game/vote/1',
+			  url : '/game/vote/' + id,
 			  data : JSON.stringify(data),
 			  type : 'PATCH',
 			  contentType : 'application/json',

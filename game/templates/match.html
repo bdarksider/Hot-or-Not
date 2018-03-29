@@ -7,15 +7,21 @@
 
   <br />
 
-  <div id="hero" class="left-option text-center">
-    <img class="food-image" src="/media/{{match.left_image}}" alt="">
-    <div style="font-size: 100px">{{match.vote_left}}</div>
+  <div data-id="{{match.id}}" class="match">
+    <div id="hero" class="left-option text-center">
+      <img class="food-image" src="/media/{{match.left_image}}" alt="">
+      <div class="left-count" style="font-size: 100px">{{match.vote_left}}</div>
+    </div>
+    {# <div>vs</div> #}
+    <div id="hero" class="right-option text-center">
+      <img class="food-image" src="/media/{{match.right_image}}" alt="">
+      <div class="right-count" style="font-size: 100px">{{match.vote_right}}</div>
+    </div>
   </div>
-  {# <div>vs</div> #}
-  <div id="hero" class="right-option text-center">
-    <img class="food-image" src="/media/{{match.right_image}}" alt="">
-    <div style="font-size: 100px">{{match.vote_right}}</div>
-  </div>
+
+  <br />
+
+  <div style="margin-top: 100px;" class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
 {% endblock %}
 
 
