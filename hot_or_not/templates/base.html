@@ -29,68 +29,38 @@
   </head>
 
   <body>
-    <div id="fb-root"></div>
+
     <script>
-      window.fbAsyncInit = function() {
-        FB.init({
-          appId      : '221837898398501',
-          cookie     : true,
-          xfbml      : true,
-          version    : 'v2.12'
-        });
-
-        FB.AppEvents.logPageView();
-
-        FB.getLoginStatus(function(response) {
-          checkFbLoggedIn(response);
-        });
-      };
-
       (function(d, s, id){
-         var js, fjs = d.getElementsByTagName(s)[0];
-         if (d.getElementById(id)) {return;}
-         js = d.createElement(s); js.id = id;
-         js.src = "https://connect.facebook.net/en_US/sdk.js";
-         fjs.parentNode.insertBefore(js, fjs);
-       }(document, 'script', 'facebook-jssdk'));
+           var js, fjs = d.getElementsByTagName(s)[0];
+           if (d.getElementById(id)) {return;}
+           js = d.createElement(s); js.id = id;
+           js.src = "https://connect.facebook.net/en_US/sdk.js";
+           fjs.parentNode.insertBefore(js, fjs);
+         }(document, 'script', 'facebook-jssdk'));
+            window.fbAsyncInit = function() {
+              FB.init({
+                appId      : '221837898398501',
+                cookie     : true,
+                xfbml      : true,
+                version    : 'v2.12'
+              });
+
+              FB.AppEvents.logPageView();
+
+              FB.getLoginStatus(function(response) {
+              checkFbLoggedIn(response);
+            });
+        };
 
       function checkFbLoggedIn(response) {
-        if (response.status != 'connected') {
-          FB.login(function(response) {
-              if (response.authResponse) {
-               console.log('Welcome!  Fetching your information.... ');
-               FB.api('/me', function(response) {
-                 console.log('Good to see you, ' + response.name + '.');
-               });
-              } else {
-               console.log('User cancelled login or did not fully authorize.');
-              }
-          }, {scope: 'email'});
+        if (response.status == 'connected') {
+          $(".fb-login-button").hide();
+        } else {
+          $(".fb-login-button").show();
         }
       }
     </script>
-    <!-- facebook login -->
-
-    <!-- <div class="m-b-1">
-      <nav class="navbar navbar-expand-md navbar-light bg-light">
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <a class="navbar-brand" href="{% url 'home' %}">Hot or Not</a>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'about' %}">About</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-
-    </div> -->
 
     <div class="container">
 
