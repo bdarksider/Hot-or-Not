@@ -87,18 +87,21 @@ var $delete = $('.delete'),
     openthecard = new TimelineMax();
 
 function deleteCard(){
-
+  
   $delete.on('click', function(){
+  	if (localStorage.getItem('connected')) {
+	    var $card = $('.cards-wrapper').find('.card').eq(4);
+	    $card.attr('style','');
 
-    var $card = $('.cards-wrapper').find('.card').eq(4);
-    $card.attr('style','');
+	    var $cardContent = $card.clone().wrap('<li>').parent().html();
+	    $('.cards-wrapper').prepend($cardContent);
+	    TweenLite.fromTo($delete, 0.5, {boxShadow: '0 0 0 0 rgba(0,0,0,0.5)' }, {boxShadow: '0 0 0 20px rgba(0,0,0,0)'});
 
-    var $cardContent = $card.clone().wrap('<li>').parent().html();
-    $('.cards-wrapper').prepend($cardContent);
-    TweenLite.fromTo($delete, 0.5, {boxShadow: '0 0 0 0 rgba(0,0,0,0.5)' }, {boxShadow: '0 0 0 20px rgba(0,0,0,0)'});
-
-    cardAnimate($card);
-    refreshOpen();
+	    cardAnimate($card);
+	    refreshOpen();
+  	} else {
+		Swal("Please connect with Facebook to continue");
+  	}
 
   });
 }
@@ -150,9 +153,8 @@ function refreshOpen(){
 }
 
 function openCard(){
-
   $openCard.on('click', function(e) {
-    console.log(el);
+  	var el = $(this);
     var close = el.find('.card-header .close');
     var text = el.find('.card-content .text').eq(0);
     if( !(el.hasClass('open')) ){
@@ -168,7 +170,6 @@ function openCard(){
 }
 
 function closeCard(){
-
   $close.on('click', function(e) {
     e.stopPropagation();
     var el = $(this);
@@ -186,20 +187,21 @@ function closeCard(){
 }
 
 function likeCard(){
-
   $like.on('click', function(e) {
-    var el = $(this);
-    var $card = $('.cards-wrapper').find('.card').eq(4);
-    TweenLite.set($card, {clearProps:'all'});
+  	if (localStorage.getItem('connected')) {
+	    var el = $(this);
+	    var $card = $('.cards-wrapper').find('.card').eq(4);
+	    TweenLite.set($card, {clearProps:'all'});
 
-    var $cardContent = $card.clone().wrap('<li>').parent().html();
-    $('.cards-wrapper').prepend($cardContent);
-    TweenLite.fromTo(el, 0.5, {boxShadow: '0 0 0 0 rgba(0,0,0,0.5)' }, {boxShadow: '0 0 0 20px rgba(0,0,0,0)'});
-    likeAnimate($card);
-    refreshOpen();
-
+	    var $cardContent = $card.clone().wrap('<li>').parent().html();
+	    $('.cards-wrapper').prepend($cardContent);
+	    TweenLite.fromTo(el, 0.5, {boxShadow: '0 0 0 0 rgba(0,0,0,0.5)' }, {boxShadow: '0 0 0 20px rgba(0,0,0,0)'});
+	    likeAnimate($card);
+	    refreshOpen();
+	} else {
+		Swal("Please connect with Facebook to continue")
+	}
   });
-
 }
 
 likeCard();

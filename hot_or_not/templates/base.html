@@ -56,8 +56,10 @@
       function checkFbLoggedIn(response) {
         if (response.status == 'connected') {
           $(".fb-login-button").hide();
+          localStorage.setItem('connected', 'true');
         } else {
           $(".fb-login-button").show();
+          localStorage.removeItem('connected');
         }
       }
     </script>
@@ -93,6 +95,7 @@
 
       <!-- Your stuff: Third-party javascript libraries go here -->
       <script src="https:////cdnjs.cloudflare.com/ajax/libs/gsap/1.16.1/TweenMax.min.js" crossorigin="anonymous"></script>
+      <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js" crossorigin="anonymous"></script>
       
       <!-- place project specific Javascript in this file -->
 
