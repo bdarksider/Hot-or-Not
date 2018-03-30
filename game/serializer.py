@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Food
+from .models import Food, FacebookUser
 
 class MatchSerializer(serializers.ModelSerializer):
 	class Meta:
@@ -21,3 +21,9 @@ class MatchSerializer(serializers.ModelSerializer):
 				instance.vote_right += 1
 		instance.save()
 		return instance
+
+class FacebookUserSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = FacebookUser
+		resource_name = "match_resource"
+		fields = ('email',)

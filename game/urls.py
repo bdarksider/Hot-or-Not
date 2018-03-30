@@ -24,4 +24,9 @@ urlpatterns = [
         view=views.Vote.as_view(),
         name='vote'
     ),
+    url(
+        regex=r'^user/facebook$',
+        view=views.FacebookUserView.as_view(),
+        name='facebook-user'
+    ),
 ]

@@ -7,7 +7,7 @@ from rest_framework.response import Response
 
 from .models import Food
 from .forms import GameForm
-from .serializer import MatchSerializer
+from .serializer import MatchSerializer, FacebookUserSerializer
 
 def model_form_upload(request):
     if request.method == 'POST':
@@ -51,3 +51,7 @@ class NextGame(generics.RetrieveAPIView):
         match = Food.objects.get(id=random_row)
         serializer = MatchSerializer(match)
         return Response(serializer.data)
+
+class FacebookUserView(generics.CreateAPIView):
+    queryset = Food.objects.all()
+    serializer_class = FacebookUserSerializer
