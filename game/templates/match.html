@@ -3,25 +3,122 @@
 
 {% block content %}
 
-	<h1>Hot <span>or</span> Not</h1>
+	
 
-  <br />
+<!-- <img data-id="{{match.id}}" ßclass="circle" src="/media/{{match.left_image}}" alt=""> -->
+      
 
-  <div data-id="{{match.id}}" class="match">
-    <div id="hero" class="left-option text-center">
-      <img class="food-image" src="/media/{{match.left_image}}" alt="">
-      <div class="left-count" style="font-size: 100px">{{match.vote_left}}</div>
-    </div>
-    {# <div>vs</div> #}
-    <div id="hero" class="right-option text-center">
-      <img class="food-image" src="/media/{{match.right_image}}" alt="">
-      <div class="right-count" style="font-size: 100px">{{match.vote_right}}</div>
+
+<div class="phone">
+  <div class="header">
+    <div class="search">Hot or Not</div>
+    <div class="like">
+      <svg>
+        <use xlink:href="#love" />
+      </svg>
     </div>
   </div>
+    <ul class="cards-wrapper">
+      <li class="card yellow">
+        <div class="card-header">
+          <span class="menu">menu</span>
+          <span class="close">
+            <svg>
+              <use xlink:href="#cross" />
+            </svg>
+          </span>
+        </div>
+        <div class="card-content">
+        </div>
+      </li>
+      <li class="card sky">
+        <div class="card-header">
+          <span class="menu">menu</span>
+          <span class="close">
+            <svg>
+              <use xlink:href="#cross" />
+            </svg>
+          </span>
+        </div>
+        <div class="card-content">
+        </div>
+      </li>
+      <li class="card blue">
+        <div class="card-header">
+          <span class="menu">menu</span>
+          <span class="close">
+            <svg>
+              <use xlink:href="#cross" />
+            </svg>
+          </span>
+        </div>
+        <div class="card-content">
+        </div>
+      </li>
+      <li class="card green">
+        <div class="card-header">
+          <span class="menu">menu</span>
+          <span class="close">
+            <svg>
+              <use xlink:href="#cross" />
+            </svg>
+          </span>
+        </div>
+        <div class="card-content">
+        </div>
+      </li>
+      <li class="card pink">
+        <div class="card-header">
+          <span class="menu">menu</span>
+          <span class="close">
+            <svg>
+              <use xlink:href="#cross" />
+            </svg>
+          </span>
+        </div>
+        <div class="card-content">
+          <img class="circle" src="/media/{{match.left_image}}" alt="">
+        </div>
+      </li>
+    </ul>
+  <div class="footer">
+    <div class="delete button">
+      <svg>
+        <use xlink:href="#cross" />
+      </svg>
+    </div>
+    <div class="like button">
+      <svg>
+        <use xlink:href="#love" />
+      </svg>
+    </div>
+  </div>
+</div>
 
-  <br />
+<svg style="display: none" xmlns="http://www.w3.org/2000/svg">
 
-  <div style="margin-top: 100px;" class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
+<symbol id="love" viewBox="0 0 510 510">
+  <g id="favorite">
+    <path d="M255,489.6l-35.7-35.7C86.7,336.6,0,257.55,0,160.65C0,81.6,61.2,20.4,140.25,20.4c43.35,0,86.7,20.4,114.75,53.55
+      C283.05,40.8,326.4,20.4,369.75,20.4C448.8,20.4,510,81.6,510,160.65c0,96.9-86.7,175.95-219.3,293.25L255,489.6z"/>
+  </g>
+</symbol>
+
+<symbol id="cross" viewBox="0 0 357 357">
+  <g id="clear">
+    <polygon points="357,35.7 321.3,0 178.5,142.8 35.7,0 0,35.7 142.8,178.5 0,321.3 35.7,357 178.5,214.2 321.3,357 357,321.3 
+      214.2,178.5     "/>
+  </g>
+</symbol>
+</svg>
+
+
+
+
+<div class="text-center mt-20">
+  <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
+</div>
+
 {% endblock %}
 
 
