@@ -87,7 +87,7 @@ var $delete = $('.delete'),
     openthecard = new TimelineMax();
 
 function deleteCard(){
-  
+
   $delete.on('click', function(){
   	if (localStorage.getItem('connected')) {
 	    var $card = $('.cards-wrapper').find('.card').eq(4);
@@ -211,6 +211,6 @@ deleteCard();
 
 function checkLoginState() {
   FB.getLoginStatus(function(response) {
-    checkFbLoggedIn(response);
+    checkFbLoggedIn(response, true);
   });
 }

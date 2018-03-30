@@ -27,3 +27,7 @@ class FacebookUserSerializer(serializers.ModelSerializer):
 		model = FacebookUser
 		resource_name = "match_resource"
 		fields = ('email',)
+
+	def create(self, validated_data):
+		user, _ = FacebookUser.objects.get_or_create(email=validated_data.get('email'))
+		return user

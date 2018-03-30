@@ -53,10 +53,32 @@
             });
         };
 
-      function checkFbLoggedIn(response) {
+      function checkFbLoggedIn(response, manualLogin) {
         if (response.status == 'connected') {
           $(".fb-login-button").hide();
           localStorage.setItem('connected', 'true');
+
+          if (manualLogin) {
+            FB.api('/me', { fields: 'email' },
+              function(response) {
+                var data = {
+                  email: response.email
+                }
+                var request = $.ajax({
+                  url : '/game/user/facebook',
+                  data : JSON.stringify(data),
+                  type : 'PATCH',
+                  contentType : 'application/json',
+                  processData: false,
+                  dataType: 'json'
+                });
+
+                request.done(function(msg) {
+                  console.log(msg);
+                });
+              }
+            );
+          }
         } else {
           $(".fb-login-button").show();
           localStorage.removeItem('connected');
