@@ -208,3 +208,9 @@ likeCard();
 closeCard();
 openCard();
 deleteCard();
+
+function checkLoginState() {
+  FB.getLoginStatus(function(response) {
+    checkFbLoggedIn(response);
+  });
+}
