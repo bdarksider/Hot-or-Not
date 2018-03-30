@@ -10,6 +10,11 @@ urlpatterns = [
         name='match'
     ),
     url(
+        regex=r'^next$',
+        view=views.NextGame.as_view(),
+        name='next-game'
+    ),
+    url(
         regex=r'^upload$',
         view=views.model_form_upload,
         name='upload'

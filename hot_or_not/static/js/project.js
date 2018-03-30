@@ -66,6 +66,16 @@ function voteRequest(data, id) {
 			});
 }
 
+function newGameRequest() {
+	return $.ajax({
+			  url : '/game/next',
+			  type : 'GET',
+			  contentType : 'application/json',
+			  processData: false,
+			  dataType: 'json'
+			});
+}
+
 var $delete = $('.delete'),
     $like = $('.like'),
     $header = $('.header'),
@@ -128,6 +138,12 @@ function refreshOpen(){
   $open = $('.cards-wrapper').find('.card').eq(4);
   $close = $('.close');
 
+
+  var request = newGameRequest().done(function(msg) {
+	 $open.eq(0).find('.circle').attr('src', msg.image);
+  })
+
+
   $openCard = $open;
   openCard($openCard);
   closeCard($close);
@@ -136,8 +152,7 @@ function refreshOpen(){
 function openCard(){
 
   $openCard.on('click', function(e) {
-
-    var el = $(this);
+    console.log(el);
     var close = el.find('.card-header .close');
     var text = el.find('.card-content .text').eq(0);
     if( !(el.hasClass('open')) ){

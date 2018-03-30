@@ -5,45 +5,49 @@ from rest_framework.renderers import TemplateHTMLRenderer
 from rest_framework import generics
 from rest_framework.response import Response
 
-from .models import Match
-from .forms import MatchForm
+from .models import Food
+from .forms import GameForm
 from .serializer import MatchSerializer
 
 def model_form_upload(request):
     if request.method == 'POST':
-        form = MatchForm(request.POST, request.FILES)
+        form = GameForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('home')
     else:
-        form = MatchForm()
+        form = GameForm()
     return render(request, 'model_form_upload.html', {
         'form': form
     })
 
-class UserDetail(generics.RetrieveAPIView):
-    queryset = Match.objects.all()
-    renderer_classes = (TemplateHTMLRenderer,)
-
-    def get(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        return Response({'user': self.object}, template_name='user_detail.html')
-
 class Vote(generics.RetrieveUpdateAPIView):
-    queryset = Match.objects.all()
+    queryset = Food.objects.all()
     serializer_class = MatchSerializer
 
 class MatchView(generics.RetrieveAPIView):
     """
     A View that returns random match.
     """
-    queryset = Match.objects.all()
+    queryset = Food.objects.all()
     renderer_classes = (TemplateHTMLRenderer,)
 
     def get(self, request, *args, **kwargs):
-        count = Match.objects.all().count()
+        count = Food.objects.all().count()
+        import random
+        random_row = random.randint(1, count)
+        match = Food.objects.get(id=random_row)
+        return Response({'match': match}, template_name='match.html')
+
+class NextGame(generics.RetrieveAPIView):
+    queryset = Food.objects.all()
+    serializer_class = MatchSerializer
+
+    def get(self, request, *args, **kwargs):
+        count = Food.objects.all().count()
         import random
         random_row = random.randint(1, count)
         print(random_row)
-        match = Match.objects.get(id=random_row)
-        return Response({'match': match}, template_name='match.html')
+        match = Food.objects.get(id=random_row)
+        serializer = MatchSerializer(match)
+        return Response(serializer.data)

@@ -1,11 +1,11 @@
 from rest_framework import serializers
-from .models import Match
+from .models import Food
 
 class MatchSerializer(serializers.ModelSerializer):
 	class Meta:
-		model = Match
+		model = Food
 		resource_name = "match_resource"
-		fields = ('id', 'vote_left', 'vote_right', 'left_image', 'right_image')
+		fields = ('id', 'image')
 
 	# url = serializers.HyperlinkedIdentityField(
 	# 	view_name='vote',
